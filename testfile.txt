@@ -8,3 +8,45 @@
 26-03-2019  20:02                 0 testfile.txt
                1 File(s)              0 bytes
                2 Dir(s)  62,210,060,288 bytes free
+
+Customer is ready to Un-protect thier sensitive data in RHEL 6 then after migration to RHEL 7 they can protect the same 
+Customers are using internal/external block devices normally
+Device name are changing frequently or not in customer scenarios
+what is the FPDID setup in path_name_info.conf file inside FP installation directory
+   Path Name Info Type  (Local) :  2 (<FPDID> + <Path on the Volume>)
+   Path Name Info Type (Remote) :  1 (<Remote IP Address> + <Path on the Remote Volume>)
+  Path Name Info Volume Setting :  off
+  
+After migration to RHEL 7 what are the setup they will retain (device names, mount paths, FPDID values, files/folders heirarchy, delegated scripts paths)
+
+
+
+
+
+
+1. How they are migrating to RHEL7. Only boot volume they are migrating or they have the brand new machine setup.
+   If they are only changing their boot volumes then make sure other partitions and data heirarchy are same.
+   
+2. "/dev/sda1	yes	volume	hdfs1	/u/applic/data/hdfs1"
+   This is the only volume which they are protected by using Volume Protection
+   After migration to RHEL 7 device name & mount path wll retain or not. if not, it wont successfully do Volume Encryption on this device
+
+3. Is this internal/external device (/dev/sda1). If it is internal while migration to RHEL 7 it will loose Volume Encryption, where if its connected by externally then 
+   device name and mounted path should be same after migration. 
+
+4. Device Name : /dev/sda1
+   Mount Point : /boot
+   FPDID : FPDID00000018eD001N6BSrFRqiOqUl
+			
+   I could see this entries in FPDID list. if it is then they protected boot volumes, its not recommended. There is a chance of device name change while restart the system.
+   Are they configuring with different ESA and policies (DE's, Roles, With different set of permissions) after migrating to RHEL 7
+
+5. How they are FP/AC protected data's backup and restoring in migration setup.
+
+6. These are the path where AC protected data resides (/opt/app/da, /home, /data/01/.encrypted01) from dfpadmin status. Make sure these data heirarchy will be same 
+   after migration to RHEL7.
+7. The data is AC protected in RHEL 6 setup whether they only AC protected or AC+FE.
+
+
+
+
